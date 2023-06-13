@@ -1,0 +1,58 @@
+.page-header__big {
+    font-size: 68px;
+    animation: fadein 2s;
+    text-align: center;
+    @media (min-width: $desktop-breakpoint) {
+        font-size: 120px;
+        text-align: left;
+    }
+}
+
+.page-header__big--welcome {
+    color: $blue;
+}
+
+.page-header__big--aboutme {
+    color: $orange;
+}
+
+.page-header__big--projects {
+    color: $purple;
+    @media (min-width: $desktop-breakpoint) {
+        margin-bottom: 0;
+    }
+}
+
+.page-header__big--resume {
+    color: $green;
+    @media (min-width: $desktop-breakpoint) {
+        margin-bottom: 0;
+    }
+}
+
+.page-header__big--contactme {
+    color: $red;
+}
+
+.page-header__big--projectpage {
+    font-size: 60px;
+    color: $purple;
+    padding-top: 20%;
+    text-align: center;
+    @media (min-width: $desktop-breakpoint) {
+        font-size: 100px;
+        padding-top: 0%;
+        margin-bottom: $l-size;
+    }
+}
+
+.page-header__big--404 {
+    color: $yellow;
+    padding-top: 10%;
+    @media (min-width: $desktop-breakpoint) {
+        padding-top: 0%;
+        margin-bottom: 0;
+    }
+}
+
+

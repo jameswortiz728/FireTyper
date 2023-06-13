@@ -1,0 +1,49 @@
+{
+  "name": "Firetyper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "James Ortiz",
+  "license": "MIT",
+  "scripts": {
+    "build:dev": "webpack",
+    "build:prod": "webpack --env production",
+    "dev-server": "webpack serve",
+    "start": "node server/server.js",
+    "heroku-postbuild": "yarn run build:prod"
+  },
+  "dependencies": {
+    "all": "^0.0.0",
+    "babel-cli": "6.24.1",
+    "babel-core": "6.25.0",
+    "babel-loader": "7.1.1",
+    "babel-plugin-transform-class-properties": "6.24.1",
+    "babel-plugin-transform-object-rest-spread": "6.23.0",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1",
+    "css-loader": "^6.7.4",
+    "express": "4.15.4",
+    "node-sass": "^9.0.0",
+    "normalize.css": "7.0.0",
+    "react": "^18.2.0",
+    "react-addons-shallow-compare": "15.6.0",
+    "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1",
+    "react-router-dom": "^6.11.1",
+    "sass-loader": "^13.3.0",
+    "style-loader": "^3.3.3",
+    "validator": "8.0.0",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1"
+  },
+  "devDependencies": {
+    "cross-env": "5.0.5",
+    "css-minimizer-webpack-plugin": "^5.0.0",
+    "dotenv": "4.0.0",
+    "mini-css-extract-plugin": "^2.7.6",
+    "react-test-renderer": "16.0.0",
+    "webpack-dev-server": "^4.15.0"
+  },
+  "description": "git init - Create a new repo\r git status - View the changes to your project\r git add - Add files to staging area\r git commit - Creates a new commit with files from staging area\r git log - View recent commits",
+  "keywords": []
+}
