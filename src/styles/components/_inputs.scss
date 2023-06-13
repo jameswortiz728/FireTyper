@@ -6,6 +6,13 @@
     padding: $s-size;
 }
 
+.text-input--typingtest {
+    max-width: 40rem;
+    @media (min-width: $desktop-breakpoint) {
+        width: 40rem;
+    }
+}
+
 .select {
     @extend .text-input;
 }
