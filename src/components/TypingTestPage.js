@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Prompt from './../components/Prompt';
+import ScoreModal from './../components/ScoreModal';
 import { basicDictionary } from '../fixtures/dictionaries';
 import wordListContext from '../context/wordListContext';
 import wordStateListContext from '../context/wordStateListContext';
@@ -12,10 +13,22 @@ const TypingTestPage = () => {
     const [correct, setCorrect] = useState(0);
     const [currentStreak, setCurrentStreak] = useState(0);
     const [longestStreak, setLongestStreak] = useState(0);
+    const [timer, setTimer] = useState(60);
+    const [pauseTimer, setPauseTimer] = useState(true);
+    const [scoreModal, setScoreModal] = useState(false);
 
     useEffect(() => {
         setTimeout(generatePrompt(), 50);
     }, []);
+
+    const openModal = () => {
+        setScoreModal(true);
+        setPauseTimer(true);
+    }
+
+    const closeModal = () => {
+        setScoreModal(false);
+    }
 
     const generatePrompt = () => {
         let tempList = [];
@@ -30,7 +43,25 @@ const TypingTestPage = () => {
         setWordStateList(tempStateList);
     }
 
+    const startTimer = () => {
+        let i = timer;
+        const interval = setInterval(() => {
+            setTimer(timer => timer-1);
+            i--;
+            if (i === 0) {
+                clearInterval(interval);
+                openModal(); 
+            }
+        }, 1000)
+    }
+
+
     const handleOnChange = (e) => {
+        if(pauseTimer === true)
+        {
+            startTimer();
+            setPauseTimer(false);
+        }
         let checkWord = e.target.value;
         setCurrentWord(checkWord);
         if(checkWord[checkWord.length-1] === " ") {     
@@ -55,12 +86,14 @@ const TypingTestPage = () => {
     }
 
     const handleOnReset = () => {
+        closeModal();
         generatePrompt();
         setCount(0);
         setCorrect(0);
         setCurrentStreak(0);
         setLongestStreak(0);
         setCurrentWord("");
+        setTimer(60);
     }
     
     return (
@@ -80,12 +113,14 @@ const TypingTestPage = () => {
                         onChange={handleOnChange}
                     />
                     <button onClick={handleOnReset}>Reset</button>
+                    <p>Time Left: {timer} seconds</p>
                     <p>Total words: {count}</p>
                     <p>Correct: {correct}</p>
                     <p>Incorrect: {count - correct}</p>
                     <p>Current streak: {currentStreak}</p>  
                     <p>Longest streak: {longestStreak}</p>
-                </div>      
+                </div>
+                <ScoreModal score={correct} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={longestStreak}/>      
             </wordStateListContext.Provider>
         </wordListContext.Provider>  
     );
