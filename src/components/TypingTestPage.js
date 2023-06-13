@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Prompt from './../components/Prompt';
 import { basicDictionary } from '../fixtures/dictionaries';
 import wordListContext from '../context/wordListContext';
-import TypingWord from './../components/TypingWord';
+import wordStateListContext from '../context/wordStateListContext';
 
 const TypingTestPage = () => {
     const [wordList, setWordList] = useState([]);
+    const [wordStateList, setWordStateList]  = useState([]);
     const [currentWord, setCurrentWord] = useState("");
     const [count, setCount] = useState(0);
     const [correct, setCorrect] = useState(0);
@@ -17,16 +18,16 @@ const TypingTestPage = () => {
     }, []);
 
     const generatePrompt = () => {
-        setWordList([]);
         let tempList = [];
-
-        for(let i = 0; i < 300; i++)
-        {
+        let tempStateList = [1];
+        for(let i = 0; i < 300; i++) {
             let randomNumber = Math.floor(Math.random() * basicDictionary.length);
             let currentWord = basicDictionary[randomNumber];
             tempList.push(currentWord);
+            tempStateList.push(0);
         }
         setWordList(tempList);
+        setWordStateList(tempStateList);
     }
 
     const handleOnChange = (e) => {
@@ -34,15 +35,20 @@ const TypingTestPage = () => {
         setCurrentWord(checkWord);
         if(checkWord[checkWord.length-1] === " ") {     
             let word = checkWord.trim();
+            let newArr = [...wordStateList];
             if (wordList[count] === word) {
+                newArr[count] = 2;
                 setCorrect(correct + 1);
                 setCurrentStreak(currentStreak + 1);
                 if(longestStreak <= currentStreak) {
                     setLongestStreak(currentStreak + 1);
                 }
             } else {
+                newArr[count] = 3;
                 setCurrentStreak(0);
             }
+            newArr[count + 1] = 1;
+            setWordStateList(newArr);
             setCount(count + 1);
             setCurrentWord("");
         }  
@@ -59,7 +65,7 @@ const TypingTestPage = () => {
     
     return (
         <wordListContext.Provider value={wordList}>
-            <div>
+            <wordStateListContext.Provider value={wordStateList}>
                 <h1>Firetyper</h1>
                 <div className="content-container">
                     <div className="typingtest">
@@ -80,7 +86,7 @@ const TypingTestPage = () => {
                     <p>Current streak: {currentStreak}</p>  
                     <p>Longest streak: {longestStreak}</p>
                 </div>      
-            </div>
+            </wordStateListContext.Provider>
         </wordListContext.Provider>  
     );
 };

@@ -16,8 +16,11 @@
 
 .textDefault--incorrect {
     color: $red;
+    font-style: italic;
 }
 
 .textDefault--current {
     color: $orange;
+    font-weight: bold;
+    font-size: 40px;
 }

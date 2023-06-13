@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import ProjectListItem from './LeaderboardListItem';
-import ProjectsContext from '../context/promptContext';
+import ProjectsContext from '../context/wordListContext';
 
 const ProjectList = () => {
     const { projects } = useContext(ProjectsContext);
