@@ -3,27 +3,50 @@ import { basicDictionary } from '../fixtures/dictionaries';
 
 const TypingTestPage = () => {
     const [prompt, setPrompt] = useState("");
+    const [count, setCount] = useState(0);
+    const [correct, setCorrect] = useState(0);
+    const [wordList, setWordList] = useState([]);
+    const [currentStreak, setCurrentStreak] = useState(0);
+    const [longestStreak, setLongestStreak] = useState(0);
 
-    let wordList = [];
+    useEffect(() => {
+        setTimeout(generatePrompt(), 50);
+    }, []);
 
     const generatePrompt = () => {
-        wordList = [];
+        setWordList([]);
         let finalPrompt = "";
+        let tempList = [];
 
         for(let i = 0; i < 300; i++)
         {
             let randomNumber = Math.floor(Math.random() * basicDictionary.length);
             let currentWord = basicDictionary[randomNumber];
-            wordList.push(currentWord);
+            tempList.push(currentWord);
             finalPrompt += (currentWord + " ");
         }
-
+        setWordList(tempList);
         setPrompt(finalPrompt);
     }
 
-    useEffect(() => {
+    const handleOnChange = (e) => {
+        let checkWord = e.target.value;
+        if(checkWord[checkWord.length-1] === " ")
+        {     
+            let word = checkWord.trim();
+            if (wordList[count] === word) {
+                setCorrect(correct + 1);
+            }
+            setCount(count + 1);
+            e.target.value = "";
+        }  
+    }
+
+    const handleOnReset = () => {
         generatePrompt();
-    }, []); 
+        setCount(0);
+        setCorrect(0);
+    }
     
     return (
         <div>
@@ -39,8 +62,12 @@ const TypingTestPage = () => {
                 placeholder="Begin typing here..."
                 autoFocus
                 className="text-input"
+                onChange={handleOnChange}
             />
-            <button onClick={generatePrompt}>Reset</button>    
+            <button onClick={handleOnReset}>Reset</button>
+            <p>Total words: {count}</p>
+            <p>Correct: {correct}</p>
+            <p>Incorrect: {count - correct}</p>    
         </div>  
     );
 };
