@@ -5,3 +5,19 @@
 .text__coloritemheader {
     color: $purple;
 }
+
+.textDefault {
+    color: $off-white;
+}
+
+.textDefault--correct {
+    color: $green;
+}
+
+.textDefault--incorrect {
+    color: $red;
+}
+
+.textDefault--current {
+    color: $orange;
+}
