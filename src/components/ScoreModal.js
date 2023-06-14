@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 
-const ContactModal = ({ score, handleOnReset, scoreModal, longestStreak }) => {
+const ContactModal = ({ score, scorePercent, handleOnReset, scoreModal, longestStreak }) => {
 
     return (
         <div>
@@ -13,8 +13,9 @@ const ContactModal = ({ score, handleOnReset, scoreModal, longestStreak }) => {
             >
                 <h3 className="modal__title">Time is up!</h3>
                 <p className="modal__body">Your WPM: {score} WPM</p>
-                <p className="modal__body">Best streak: {longestStreak} words</p>
-                <button className="button" onClick={handleOnReset}>Reset</button>
+                <p className="modal__body">Accuracy: {scorePercent}%</p>
+                <p className="modal__body">Best streak: {longestStreak} word{longestStreak === 1 ? "" : "s"}</p>
+                <button className="button button--modal" onClick={handleOnReset}>Reset</button>
             </Modal>
         </div> 
     )

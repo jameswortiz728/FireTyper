@@ -13,11 +13,13 @@ const TypingTestPage = () => {
     const [correct, setCorrect] = useState(0);
     const [currentStreak, setCurrentStreak] = useState(0);
     const [longestStreak, setLongestStreak] = useState(0);
-    const [timer, setTimer] = useState(60);
+    const [timer, setTimer] = useState(3);
     const [pauseTimer, setPauseTimer] = useState(true);
     const [scoreModal, setScoreModal] = useState(false);
 
     const intervalRef = React.useRef();
+
+    let scorePercent = count > 0 ? Math.floor((correct / count) * 100) : 0;
 
     useEffect(() => {
         setTimeout(generatePrompt(), 50);
@@ -118,12 +120,12 @@ const TypingTestPage = () => {
                     <button className="button" onClick={handleOnReset}>Reset</button>
                     <p>Time Left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
                     <p>Total words: {count}</p>
-                    <p>Correct: {correct}</p>
+                    <p>Correct: {correct} ({scorePercent}%)</p>
                     <p>Incorrect: {count - correct}</p>
                     <p>Current streak: {currentStreak}</p>  
                     <p>Longest streak: {longestStreak}</p>
                 </div>
-                <ScoreModal score={correct} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={longestStreak}/>      
+                <ScoreModal score={correct} scorePercent={scorePercent} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={longestStreak}/>      
             </wordStateListContext.Provider>
         </wordListContext.Provider>  
     );
