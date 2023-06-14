@@ -4,17 +4,17 @@ import wordStateListContext from '../context/wordStateListContext';
 const TypingWord = ({word, id}) => {
     const wordStateList = useContext(wordStateListContext);
 
-    let className="textdefault"
+    let className="textDefault"
     
     switch(wordStateList[id]) {
         case 1: 
-            className="textdefault textDefault--current" 
+            className="textDefault textDefault--current" 
             break;
         case 2: 
-            className="textdefault textDefault--correct"
+            className="textDefault textDefault--correct"
             break;
         case 3: 
-            className="textdefault textDefault--incorrect"
+            className="textDefault textDefault--incorrect"
             break;
         default:
             break;
