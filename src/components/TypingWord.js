@@ -6,12 +6,18 @@ const TypingWord = ({word, id}) => {
 
     let className="textdefault"
     
-    if(wordStateList[id] === 1) {
-        className="textdefault textDefault--current"
-    } else if (wordStateList[id] === 2) {
-        className="textdefault textDefault--correct"
-    } else if (wordStateList[id] === 3) {
-        className="textdefault textDefault--incorrect"
+    switch(wordStateList[id]) {
+        case 1: 
+            className="textdefault textDefault--current" 
+            break;
+        case 2: 
+            className="textdefault textDefault--correct"
+            break;
+        case 3: 
+            className="textdefault textDefault--incorrect"
+            break;
+        default:
+            break;
     }
     
     return (
