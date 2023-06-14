@@ -1,4 +1,11 @@
+.page-header {
+    color: $orange;    
+    animation: fadein 2s;    
+    font-size: 50px; 
+}
+
 .page-header__big {
+    color: $orange;
     font-size: 68px;
     animation: fadein 2s;
     text-align: center;

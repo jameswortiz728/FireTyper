@@ -14,7 +14,7 @@ const ContactModal = ({ score, handleOnReset, scoreModal, longestStreak }) => {
                 <h3 className="modal__title">Time is up!</h3>
                 <p className="modal__body">Your WPM: {score} WPM</p>
                 <p className="modal__body">Best streak: {longestStreak} words</p>
-                <button className="button button--contactme" onClick={handleOnReset}>Reset</button>
+                <button className="button" onClick={handleOnReset}>Reset</button>
             </Modal>
         </div> 
     )

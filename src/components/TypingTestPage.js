@@ -102,8 +102,8 @@ const TypingTestPage = () => {
     return (
         <wordListContext.Provider value={wordList}>
             <wordStateListContext.Provider value={wordStateList}>
-                <h1>Firetyper</h1>
                 <div className="content-container">
+                    <h1 className="page-header">Firetyper</h1>
                     <div className="typingtest">
                         <Prompt/>
                     </div>
@@ -115,7 +115,7 @@ const TypingTestPage = () => {
                         value={currentWord}
                         onChange={handleOnChange}
                     />
-                    <button onClick={handleOnReset}>Reset</button>
+                    <button className="button" onClick={handleOnReset}>Reset</button>
                     <p>Time Left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
                     <p>Total words: {count}</p>
                     <p>Correct: {correct}</p>

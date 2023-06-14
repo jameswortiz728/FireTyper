@@ -1,7 +1,7 @@
 .button {
-    background: $purple;
+    background: $orange;
     border: none;
-    border-bottom: .6rem solid darken($purple, 10%);
+    border-bottom: .6rem solid darken($orange, 10%);
     color: white;
     display: inline-block;
     font-size: $font-size-large;
@@ -9,9 +9,6 @@
     line-height: 1;
     margin-bottom: $m-size;
     padding: $s-size;
-    &:hover {
-        text-decoration: underline;
-    }
 }
 
 .button--modalgo {
