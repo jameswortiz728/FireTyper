@@ -105,7 +105,7 @@ const TypingTestPage = () => {
         <wordListContext.Provider value={wordList}>
             <wordStateListContext.Provider value={wordStateList}>
                 <div className="content-container">
-                    <h1 className="page-header">Firetyper</h1>
+                    <h1 className="page-header">🔥Firetyper</h1>
                     <div className="typingtest">
                         <Prompt/>
                     </div>
@@ -120,9 +120,9 @@ const TypingTestPage = () => {
                     <button className="button" onClick={handleOnReset}>Reset</button>
                     <p>Time Left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
                     <p>Total words: {count}</p>
-                    <p>Correct: {correct} ({accuracy}%)</p>
+                    <p>Correct: {correct} ({accuracy}%) {accuracy > 90 && "🔥"}</p>
                     <p>Incorrect: {count - correct}</p>
-                    <p>Current streak: {currentStreak}</p>  
+                    <p>Current streak: {currentStreak} {currentStreak >= 5 && "🔥"}</p>  
                     <p>Longest streak: {longestStreak}</p>
                 </div>
                 <ScoreModal score={correct} accuracy={accuracy} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={longestStreak}/>      
