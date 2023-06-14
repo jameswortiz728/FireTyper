@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Prompt from './../components/Prompt';
 import ScoreModal from './../components/ScoreModal';
 import { basicDictionary } from '../fixtures/dictionaries';
@@ -17,13 +17,14 @@ const TypingTestPage = () => {
     const [pauseTimer, setPauseTimer] = useState(true);
     const [scoreModal, setScoreModal] = useState(false);
 
+    const intervalRef = React.useRef();
+
     useEffect(() => {
         setTimeout(generatePrompt(), 50);
     }, []);
 
     const openModal = () => {
         setScoreModal(true);
-        setPauseTimer(true);
     }
 
     const closeModal = () => {
@@ -45,16 +46,16 @@ const TypingTestPage = () => {
 
     const startTimer = () => {
         let i = timer;
-        const interval = setInterval(() => {
+        intervalRef.current = setInterval(() => {
             setTimer(timer => timer-1);
             i--;
-            if (i === 0) {
-                clearInterval(interval);
+            if ( i === 0) {
+                clearInterval(intervalRef.current);
+                setPauseTimer(true);
                 openModal(); 
             }
         }, 1000)
     }
-
 
     const handleOnChange = (e) => {
         if(pauseTimer === true)
@@ -93,6 +94,8 @@ const TypingTestPage = () => {
         setCurrentStreak(0);
         setLongestStreak(0);
         setCurrentWord("");
+        setPauseTimer(true);
+        clearInterval(intervalRef.current);
         setTimer(60);
     }
     
@@ -113,7 +116,7 @@ const TypingTestPage = () => {
                         onChange={handleOnChange}
                     />
                     <button onClick={handleOnReset}>Reset</button>
-                    <p>Time Left: {timer} seconds</p>
+                    <p>Time Left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
                     <p>Total words: {count}</p>
                     <p>Correct: {correct}</p>
                     <p>Incorrect: {count - correct}</p>
