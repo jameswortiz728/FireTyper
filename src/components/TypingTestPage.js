@@ -17,7 +17,7 @@ const TypingTestPage = () => {
     const [pauseTimer, setPauseTimer] = useState(true);
     const [scoreModal, setScoreModal] = useState(false);
 
-    const intervalRef = React.useRef();
+    const intervalRef = useRef();
 
     let accuracy = count > 0 ? Math.floor((correct / count) * 100) : 0;
 
