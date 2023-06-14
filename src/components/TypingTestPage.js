@@ -19,7 +19,7 @@ const TypingTestPage = () => {
 
     const intervalRef = React.useRef();
 
-    let scorePercent = count > 0 ? Math.floor((correct / count) * 100) : 0;
+    let accuracy = count > 0 ? Math.floor((correct / count) * 100) : 0;
 
     useEffect(() => {
         setTimeout(generatePrompt(), 50);
@@ -120,12 +120,12 @@ const TypingTestPage = () => {
                     <button className="button" onClick={handleOnReset}>Reset</button>
                     <p>Time Left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
                     <p>Total words: {count}</p>
-                    <p>Correct: {correct} ({scorePercent}%)</p>
+                    <p>Correct: {correct} ({accuracy}%)</p>
                     <p>Incorrect: {count - correct}</p>
                     <p>Current streak: {currentStreak}</p>  
                     <p>Longest streak: {longestStreak}</p>
                 </div>
-                <ScoreModal score={correct} scorePercent={scorePercent} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={longestStreak}/>      
+                <ScoreModal score={correct} accuracy={accuracy} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={longestStreak}/>      
             </wordStateListContext.Provider>
         </wordListContext.Provider>  
     );
