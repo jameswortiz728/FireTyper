@@ -13,7 +13,7 @@ const TypingTestPage = () => {
     const [correct, setCorrect] = useState(0);
     const [currentStreak, setCurrentStreak] = useState(0);
     const [longestStreak, setLongestStreak] = useState(0);
-    const [timer, setTimer] = useState(3);
+    const [timer, setTimer] = useState(60);
     const [pauseTimer, setPauseTimer] = useState(true);
     const [scoreModal, setScoreModal] = useState(false);
 
