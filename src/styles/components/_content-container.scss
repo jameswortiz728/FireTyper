@@ -4,3 +4,14 @@
     max-width: 66%;
     animation: fadein 1s;
 }
+
+.content-container__stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.content-container__center {
+    display: flex;
+    justify-content: center;
+}

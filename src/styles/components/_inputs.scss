@@ -7,9 +7,11 @@
 }
 
 .text-input--typingtest {
-    max-width: 40rem;
+    max-width: 100rem;
+    font-size: 27px;
     @media (min-width: $desktop-breakpoint) {
-        width: 40rem;
+        width: 100rem;
+        height: 7.5rem;
     }
 }
 

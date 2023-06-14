@@ -14,5 +14,12 @@
 .textDefault--current {
     color: $orange;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 45px;
+    cursor: pointer;
+}
+
+.textStats {
+    padding: $m-size;
+    font-weight: bold;
+    background-color: $off-black;
 }

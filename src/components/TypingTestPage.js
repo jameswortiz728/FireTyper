@@ -60,8 +60,7 @@ const TypingTestPage = () => {
     }
 
     const handleOnChange = (e) => {
-        if(pauseTimer === true)
-        {
+        if(pauseTimer === true) {
             startTimer();
             setPauseTimer(false);
         }
@@ -106,24 +105,27 @@ const TypingTestPage = () => {
             <wordStateListContext.Provider value={wordStateList}>
                 <div className="content-container">
                     <h1 className="page-header">🔥Firetyper</h1>
+                    <div className="content-container__stats">    
+                        <p className="textStats">Time Left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
+                        <p className="textStats">Correct: {correct} ({accuracy}%) {accuracy > 90 && "🔥"}</p>
+                        <p className="textStats">Incorrect: {count - correct}</p>
+                        <p className="textStats">Current streak: {currentStreak} {currentStreak >= 5 && "🔥"}</p>  
+                        <p className="textStats">Longest streak: {longestStreak}</p>
+                    </div>
                     <div className="typingtest">
                         <Prompt/>
                     </div>
-                    <input
-                        type="text"
-                        placeholder="Begin typing here..."
-                        autoFocus
-                        className="text-input text-input--typingtest"
-                        value={currentWord}
-                        onChange={handleOnChange}
-                    />
-                    <button className="button" onClick={handleOnReset}>Reset</button>
-                    <p>Time Left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
-                    <p>Total words: {count}</p>
-                    <p>Correct: {correct} ({accuracy}%) {accuracy > 90 && "🔥"}</p>
-                    <p>Incorrect: {count - correct}</p>
-                    <p>Current streak: {currentStreak} {currentStreak >= 5 && "🔥"}</p>  
-                    <p>Longest streak: {longestStreak}</p>
+                    <div className="content-container__center">
+                        <button className="button button--reset" onClick={handleOnReset}>Reset</button>
+                        <input
+                            type="text"
+                            placeholder="Begin typing here..."
+                            autoFocus
+                            className="text-input text-input--typingtest"
+                            value={currentWord}
+                            onChange={handleOnChange}
+                        />   
+                    </div>
                 </div>
                 <ScoreModal score={correct} accuracy={accuracy} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={longestStreak}/>      
             </wordStateListContext.Provider>
