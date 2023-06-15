@@ -1,0 +1,23 @@
+.box-layout {
+    align-items: center;
+    background: $light-black;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    animation: fadein 1s;
+}
+
+.box-layout__box {
+    background: $off-black;
+    border-radius: 3px;
+    padding: $l-size $m-size;
+    text-align: center;
+    width: 25rem;
+}
+
+.box-layout__title {
+    margin: 0 0 $m-size 0;
+    line-height: 1;
+}

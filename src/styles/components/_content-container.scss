@@ -15,3 +15,15 @@
     display: flex;
     justify-content: center;
 }
+
+.content-container__split {
+    max-width: 40rem;
+    @media (min-width: $desktop-breakpoint) {
+        width: 40rem;
+    }
+}
+
+.content-container__split--background {
+    background-color: $off-black;
+    padding: $l-size;
+}
