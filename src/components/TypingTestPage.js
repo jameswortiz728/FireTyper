@@ -106,7 +106,7 @@ const TypingTestPage = () => {
                 <div className="content-container">
                     <h1 className="page-header">🔥Firetyper</h1>
                     <div className="content-container__stats">    
-                        <p className="textStats">Time Left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
+                        <p className="textStats">Time left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
                         <p className="textStats">Correct: {correct} ({accuracy}%) {accuracy > 90 && "🔥"}</p>
                         <p className="textStats">Incorrect: {count - correct}</p>
                         <p className="textStats">Current streak: {currentStreak} {currentStreak >= 5 && "🔥"}</p>  
