@@ -13,7 +13,7 @@ const ContactModal = ({ score, accuracy, handleOnReset, scoreModal, longestStrea
             >
                 <h3 className="modal__title">Time is up!</h3>
                 <p className="modal__body">Your WPM: {score} WPM</p>
-                <p className="modal__body">Accuracy: {accuracy}%</p>
+                <p className="modal__body">Accuracy: {accuracy}% {accuracy > 90 && "🔥"}</p>
                 <p className="modal__body">Best streak: {longestStreak} word{longestStreak === 1 ? "" : "s"}</p>
                 <button className="button button--modal" onClick={handleOnReset}>Reset</button>
             </Modal>
