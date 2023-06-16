@@ -1,7 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const LoginPage = () => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+
+    const startLogin = () => {
+        signInWithPopup(auth, provider);
+    }
+
     return (
         <div id="login" className="spacer spacer--topPage">
             <div className="content-container">
@@ -11,7 +18,7 @@ const LoginPage = () => {
                         <div className="box-layout__box">
                             <h1 className="box-layout__title">Login</h1>
                             <p>Login below to proceed.</p>
-                            <Link to="/typingtest"><button className="button">Login with Google</button></Link>
+                            <button onClick={startLogin} className="button">Login with Google</button>
                         </div>
                         <p>-or-</p>
                         <p>Click here to proceed without logging in (leaderboards disabled)</p>

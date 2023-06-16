@@ -12,7 +12,6 @@ const config = {
     appId: process.env.FIREBASE_APP_ID
 };
 
-//firebase.initializeApp(config);
 const firebaseApp = firebase.initializeApp(config);
 
 const database = firebaseApp.firestore();
