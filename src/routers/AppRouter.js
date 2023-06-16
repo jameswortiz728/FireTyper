@@ -17,14 +17,15 @@ const AuthRouter = () => {
                 setUserID(user.uid);
                 console.log("logged in")
                 if (location.pathname === '/') {
-                        navigate('/typingtest');
+                    navigate('/typingtest');
                 }
             } else {
                 setUserID(null);
+                console.log("logged out")
                 navigate('/');
             }
         })
-    }, []);
+    });
 
     return (
         <authContext.Provider value={{ userID, setUserID }}>
