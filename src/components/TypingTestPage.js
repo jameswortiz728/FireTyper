@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Prompt from './../components/Prompt';
+import Header from './../components/Header';
 import ScoreModal from './../components/ScoreModal';
 import { basicDictionary } from '../fixtures/dictionaries';
 import wordListContext from '../context/wordListContext';
@@ -103,6 +104,7 @@ const TypingTestPage = () => {
     return (
         <wordListContext.Provider value={wordList}>
             <wordStateListContext.Provider value={wordStateList}>
+                <Header/>
                 <div className="content-container">
                     <h1 className="page-header">🔥Firetyper</h1>
                     <div className="content-container__stats">    

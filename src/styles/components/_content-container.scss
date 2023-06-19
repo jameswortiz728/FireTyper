@@ -16,6 +16,16 @@
     justify-content: center;
 }
 
+.content-container__header {
+    margin : 0 auto;
+    padding: 0 $m-size;
+    max-width: 80rem;
+    animation: fadein 1s;
+    @media (min-width: $desktop-breakpoint) {
+        max-width: 75%;
+    }
+}
+
 .content-container__split {
     max-width: 40rem;
     @media (min-width: $desktop-breakpoint) {

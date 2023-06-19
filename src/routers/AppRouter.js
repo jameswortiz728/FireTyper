@@ -25,7 +25,7 @@ const AuthRouter = () => {
                 navigate('/');
             }
         })
-    });
+    }, []);
 
     return (
         <authContext.Provider value={{ userID, setUserID }}>
