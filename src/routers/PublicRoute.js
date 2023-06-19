@@ -1,23 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
+import authContext from './../context/authContext';
 
-export const PublicRoute = ({ 
-    isAuthenticated, 
-    component: Component, 
-    ...rest
-}) => (
-    <Route {...rest} component={(props) => (
-        isAuthenticated ? (        
-                <Redirect to="/dashboard" />  
-        ) : (
-                <Component {...props}/>
-        )
-    )}/>
-);
 
-const mapStateToProps = (state) => ({
-    isAuthenticated: !!state.auth.uid
-});
+const PublicRoute = ({ element }) => {
+    const userID = useContext(authContext);
 
-export default connect(mapStateToProps)(PublicRoute);
+    let isAuthenticated = !!userID;
+
+    return (
+        isAuthenticated ? <div>{element}</div> :  <Navigate to="/"/>
+    );
+};
+
+export default PublicRoute;
