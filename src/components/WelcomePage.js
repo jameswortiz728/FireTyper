@@ -1,7 +1,8 @@
 import React from 'react';
-import { startLogin } from './../firebase/firebase';
+import { startLogin } from '../firebase/firebase';
+import handleScrollTo from '../functions/handleScrollTo';
 
-const LoginPage = () => {
+const WelcomePage = () => {
 
     return (
         <div id="login" className="spacer spacer--topPage">
@@ -15,7 +16,8 @@ const LoginPage = () => {
                             <button onClick={startLogin} className="button">Login with Google</button>
                         </div>
                         <p>-or-</p>
-                        <p>Click here to proceed without logging in (leaderboards disabled)</p>
+                        <button onClick={() => handleScrollTo('typingtest')} className="button button--welcome">Use without logging in</button>
+                        <p>(Features limited)</p>
                     </div>
                 </div>
             </div>
@@ -23,4 +25,4 @@ const LoginPage = () => {
     )
 };
 
-export default LoginPage;
+export default WelcomePage;
