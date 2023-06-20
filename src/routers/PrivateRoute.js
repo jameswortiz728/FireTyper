@@ -9,7 +9,7 @@ const PrivateRoute = ({ element }) => {
     let isAuthenticated = !!userID;
 
     return (
-        isAuthenticated ? <div><Header/>{element}</div> : <Navigate to="/"/>
+        isAuthenticated ? <div><Header/>{element}</div> : <Navigate to="/" replace/>
     );
 
 };

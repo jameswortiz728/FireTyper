@@ -9,7 +9,7 @@ const PublicRoute = ({ element }) => {
     let isAuthenticated = !!userID;
 
     return (
-        isAuthenticated ? <div>{element}</div> :  <Navigate to="/"/>
+        isAuthenticated ? <div>{element}</div> :  <Navigate to="/" replace/>
     );
 };
 

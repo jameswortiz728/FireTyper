@@ -17,11 +17,11 @@ const AuthRouter = () => {
             if (user) {
                 setUserID(user.uid);
                 console.log("logged in")
-                navigate('/typingtest');
+                navigate('/typingtest', { replace: true });
             } else {
                 setUserID(null);
                 console.log("logged out")
-                navigate('/');
+                navigate('/', { replace: true });
             }
         })
     }, []);
