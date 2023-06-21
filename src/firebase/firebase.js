@@ -20,7 +20,10 @@ const provider = new firebase.auth.GoogleAuthProvider();
 const authGoogle = getAuth();
 
 const startLogin = () => {
-    signInWithPopup(authGoogle, provider);
+    signInWithPopup(authGoogle, provider)
+        .catch((error) =>
+            console.log("Caught error popup: " + error)
+        );
 }
 
 const startLogout = () => {

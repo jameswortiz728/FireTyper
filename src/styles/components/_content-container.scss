@@ -3,6 +3,9 @@
     padding: 0 $m-size;
     max-width: 66%;
     animation: fadein 1s;
+    margin-bottom: 13%;
+    margin-top: 5%;
+    height: 100%;
 }
 
 .content-container__stats {
@@ -18,7 +21,7 @@
 
 .content-container__header {
     margin : 0 auto;
-    padding: 0 $m-size;
+    padding: 0;
     max-width: 80rem;
     animation: fadein 1s;
     @media (min-width: $desktop-breakpoint) {
@@ -30,6 +33,18 @@
     max-width: 40rem;
     @media (min-width: $desktop-breakpoint) {
         width: 40rem;
+    }
+}
+
+.content-container__login {
+    max-width: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-right: 10%;
+    @media (min-width: $desktop-breakpoint) {
+        width: 25rem;
     }
 }
 

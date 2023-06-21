@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Prompt from './../components/Prompt';
-import Header from './../components/Header';
 import ScoreModal from './../components/ScoreModal';
 import { basicDictionary } from '../fixtures/dictionaries';
 import wordListContext from '../context/wordListContext';

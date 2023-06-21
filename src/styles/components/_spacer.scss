@@ -1,20 +1,6 @@
 .spacer {
     padding: 17.5%;
-    margin-top: 20%;
-    padding-left: 0%;
-    padding-right: 0%;
-    @media (min-width: $desktop-breakpoint) {
-        padding-top: 2.5%;
-        padding-bottom: 2.5%;
-    }
-}
-
-.spacer--topPage {
-    margin-top: 0;
-}
-.spacer__bottom {
-    padding: 17.5%;
-    margin-bottom: 20%;
+    margin-top: 0%;
     padding-left: 0%;
     padding-right: 0%;
     @media (min-width: $desktop-breakpoint) {

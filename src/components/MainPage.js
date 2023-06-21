@@ -9,6 +9,8 @@ const MainPage = () => {
     useEffect(() => {
         if(location.state) {
             setTimeout(() => handleScrollTo(location.state.id), 50);
+        } else {
+            setTimeout(() => window.scrollTo(0, 0) , 50);
         }
     }); 
 
