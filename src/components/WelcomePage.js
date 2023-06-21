@@ -11,7 +11,7 @@ const WelcomePage = () => {
                     <div>
                         <h1 className="page-header__big">🔥Firetyper</h1>
                     </div> 
-                    <div className="content-container__login">                
+                    <div className="content-container__login">                 
                         <div className="box-layout__box">
                             <h1 className="box-layout__title">Login</h1>
                             <p>Login below to proceed.</p> 
