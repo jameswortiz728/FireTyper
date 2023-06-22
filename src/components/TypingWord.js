@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import wordStateListContext from '../context/wordStateListContext';
+import typingTestContext from '../context/typingTestContext';
 
 const TypingWord = ({word, id}) => {
-    const wordStateList = useContext(wordStateListContext);
+    const {state, dispatch} = useContext(typingTestContext);
 
     let className="textDefault"
     
-    switch(wordStateList[id]) {
+    switch(state.wordStateList[id]) {
         case 1: 
             className="textDefault textDefault--current" 
             break;

@@ -1,25 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useReducer } from 'react';
 import Prompt from './../components/Prompt';
 import ScoreModal from './../components/ScoreModal';
 import { basicDictionary } from '../fixtures/dictionaries';
-import wordListContext from '../context/wordListContext';
-import wordStateListContext from '../context/wordStateListContext';
+import typingTestContext from '../context/typingTestContext';
+import typingTestReducer from './../reducers/typingTestReducer';
 
 const TypingTestPage = () => {
-    const [wordList, setWordList] = useState([]);
-    const [wordStateList, setWordStateList]  = useState([]);
-    const [currentWord, setCurrentWord] = useState("");
-    const [count, setCount] = useState(0);
-    const [correct, setCorrect] = useState(0);
-    const [currentStreak, setCurrentStreak] = useState(0);
-    const [longestStreak, setLongestStreak] = useState(0);
+    
+    const [state, dispatch] = useReducer(typingTestReducer, { 
+        wordList: [], 
+        wordStateList: [], 
+        currentWord: "", 
+        count: 0, 
+        correct: 0, 
+        currentStreak: 0, 
+        longestStreak: 0
+    });
     const [timer, setTimer] = useState(60);
     const [pauseTimer, setPauseTimer] = useState(true);
     const [scoreModal, setScoreModal] = useState(false);
-
     const intervalRef = useRef();
-
-    let accuracy = count > 0 ? Math.floor((correct / count) * 100) : 0;
+    let accuracy = state.count > 0 ? Math.floor((state.correct / state.count) * 100) : 0;
 
     useEffect(() => {
         setTimeout(generatePrompt(), 50);
@@ -42,8 +43,8 @@ const TypingTestPage = () => {
             tempList.push(currentWord);
             tempStateList.push(0);
         }
-        setWordList(tempList);
-        setWordStateList(tempStateList);
+        dispatch({type: "UPDATE_WORDLIST", wordList : tempList});
+        dispatch({type: "UPDATE_WORDSTATELIST", wordStateList : tempStateList});
     }
 
     const startTimer = () => {
@@ -65,52 +66,47 @@ const TypingTestPage = () => {
             setPauseTimer(false);
         }
         let checkWord = e.target.value;
-        setCurrentWord(checkWord);
+        dispatch({type: "UPDATE_CURRENTWORD", currentWord : checkWord });
         if(checkWord[checkWord.length-1] === " ") {     
             let word = checkWord.trim();
-            let newArr = [...wordStateList];
-            if (wordList[count] === word) {
-                newArr[count] = 2;
-                setCorrect(correct + 1);
-                setCurrentStreak(currentStreak + 1);
-                if(longestStreak <= currentStreak) {
-                    setLongestStreak(currentStreak + 1);
+            let newArr = [...state.wordStateList];
+            if (state.wordList[state.count] === word) {
+                newArr[state.count] = 2;
+                dispatch({type: "INCREMENT_CORRECT"});
+                dispatch({type: "INCREMENT_CURRENTSTREAK"});
+                if(state.longestStreak <= state.currentStreak) {
+                    dispatch({type: "UPDATE_LONGESTSTREAK"});
                 }
             } else {
-                newArr[count] = 3;
-                setCurrentStreak(0);
+                newArr[state.count] = 3;
+                dispatch({type: "RESET_CURRENTSTREAK"});
             }
-            newArr[count + 1] = 1;
-            setWordStateList(newArr);
-            setCount(count + 1);
-            setCurrentWord("");
+            newArr[state.count + 1] = 1;
+            dispatch({type: "UPDATE_WORDSTATELIST", wordStateList : newArr });
+            dispatch({type: "INCREMENT_COUNT"});
+            dispatch({type: "RESET_CURRENTWORD"});
         }  
     }
 
     const handleOnReset = () => {
         closeModal();
-        generatePrompt();
-        setCount(0);
-        setCorrect(0);
-        setCurrentStreak(0);
-        setLongestStreak(0);
-        setCurrentWord("");
         setPauseTimer(true);
-        clearInterval(intervalRef.current);
         setTimer(60);
+        dispatch({type: "RESET_ALL"});
+        generatePrompt();
+        clearInterval(intervalRef.current);
     }
     
     return (
-        <wordListContext.Provider value={wordList}>
-            <wordStateListContext.Provider value={wordStateList}>
+        <typingTestContext.Provider value={{state, dispatch}}>
                 <div id="typingtest" className="spacer">
                     <div className="content-container">
                         <div className="content-container__stats">    
                             <p className="textStats">Time left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
-                            <p className="textStats">Correct: {correct} ({accuracy}%) {accuracy > 90 && "🔥"}</p>
-                            <p className="textStats">Incorrect: {count - correct}</p>
-                            <p className="textStats">Current streak: {currentStreak} {currentStreak >= 5 && "🔥"}</p>  
-                            <p className="textStats">Longest streak: {longestStreak}</p>
+                            <p className="textStats">Correct: {state.correct} ({accuracy}%) {accuracy > 90 && "🔥"}</p>
+                            <p className="textStats">Incorrect: {state.count - state.correct}</p>
+                            <p className="textStats">Current streak: {state.currentStreak} {state.currentStreak >= 5 && "🔥"}</p>  
+                            <p className="textStats">Longest streak: {state.longestStreak}</p>
                         </div>
                         <div className="typingtest">
                             <Prompt/>
@@ -122,15 +118,14 @@ const TypingTestPage = () => {
                                 placeholder="Begin typing here..."
                                 autoFocus
                                 className="text-input text-input--typingtest"
-                                value={currentWord}
+                                value={state.currentWord}
                                 onChange={handleOnChange}
                             />   
                         </div>
                     </div>
                 </div>
-                <ScoreModal score={correct} accuracy={accuracy} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={longestStreak}/>      
-            </wordStateListContext.Provider>
-        </wordListContext.Provider>  
+                <ScoreModal score={state.correct} accuracy={accuracy} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={state.longestStreak}/>      
+        </typingTestContext.Provider>  
     );
 };
 

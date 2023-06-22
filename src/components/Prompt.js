@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import TypingWord from './../components/TypingWord';
-import wordListContext from '../context/wordListContext';
+import typingTestContext from '../context/typingTestContext';
 
 const Prompt = () => {
-    const wordList = useContext(wordListContext);
+    const {state, dispatch} = useContext(typingTestContext);
 
     return (
-        wordList.map((word, index) => <TypingWord word={word} key={index} id={index}/>)
+        state.wordList.map((word, index) => <TypingWord word={word} key={index} id={index}/>)
     )
 }
 
