@@ -13,11 +13,11 @@ const typingTestReducer = (state , action) => {
         case 'INCREMENT_CORRECT':
             return { ...state, correct: state.correct + 1 };
         case 'INCREMENT_CURRENTSTREAK':
-            return { ...state, currentStreak: state.currentStreak + 1 }
+            return { ...state, currentStreak: state.currentStreak + 1 };
         case 'RESET_CURRENTSTREAK':
-            return { ...state, currentStreak: 0 }
+            return { ...state, currentStreak: 0 };
         case 'UPDATE_LONGESTSTREAK':
-            return { ...state, longestStreak: state.currentStreak }
+            return { ...state, longestStreak: state.currentStreak };
         case 'RESET_ALL':
             return {
                 wordList: [], 
@@ -27,7 +27,7 @@ const typingTestReducer = (state , action) => {
                 correct: 0, 
                 currentStreak: 0, 
                 longestStreak: 0
-            }
+            };
         default:
             throw new Error();
     }

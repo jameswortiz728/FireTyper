@@ -16,10 +16,14 @@ const TypingTestPage = () => {
         currentStreak: 0, 
         longestStreak: 0
     });
+
     const [timer, setTimer] = useState(60);
     const [pauseTimer, setPauseTimer] = useState(true);
+    
     const [scoreModal, setScoreModal] = useState(false);
+
     const intervalRef = useRef();
+
     let accuracy = state.count > 0 ? Math.floor((state.correct / state.count) * 100) : 0;
 
     useEffect(() => {
@@ -102,7 +106,7 @@ const TypingTestPage = () => {
                 <div id="typingtest" className="spacer">
                     <div className="content-container">
                         <div className="content-container__stats">    
-                            <p className="textStats">Time left: {timer} seconds {pauseTimer && <span>(PAUSED)</span>}</p>
+                            <p className="textStats">Time left: {timer} second{timer === 1 ? "" : "s"} {pauseTimer && <span>(PAUSED)</span>}</p>
                             <p className="textStats">Correct: {state.correct} ({accuracy}%) {accuracy > 90 && "🔥"}</p>
                             <p className="textStats">Incorrect: {state.count - state.correct}</p>
                             <p className="textStats">Current streak: {state.currentStreak} {state.currentStreak >= 5 && "🔥"}</p>  
@@ -124,7 +128,7 @@ const TypingTestPage = () => {
                         </div>
                     </div>
                 </div>
-                <ScoreModal score={state.correct} accuracy={accuracy} handleOnReset={handleOnReset} scoreModal={scoreModal} longestStreak={state.longestStreak}/>      
+                <ScoreModal accuracy={accuracy} handleOnReset={handleOnReset} scoreModal={scoreModal}/>      
         </typingTestContext.Provider>  
     );
 };
