@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import handleScrollTo from '../functions/handleScrollTo';
 import TypingTestPage from './../components/TypingTestPage';
+import TestHistoryPage from './../components/TestHistoryPage';
 
 const MainPage = () => {
     const location = useLocation();
@@ -17,6 +18,7 @@ const MainPage = () => {
     return (
         <div>
             <TypingTestPage/>
+            <TestHistoryPage/>
         </div>
     )
 };

@@ -3,7 +3,8 @@ import LandingPage from '../components/LandingPage';
 import MainPage from './../components/MainPage';
 import NotFoundPage from './../components/NotFoundPage';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
-import { firebase } from './../firebase/firebase';
+import { onAuthStateChanged } from "firebase/auth";
+import { authGoogle } from '../firebase/firebase';
 import authContext from './../context/authContext';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
@@ -13,7 +14,7 @@ const AuthRouter = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged((user) => {
+        onAuthStateChanged(authGoogle, (user) => {
             if (user) {
                 setUserID(user.uid);
                 console.log("logged in")

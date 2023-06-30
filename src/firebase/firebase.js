@@ -1,7 +1,6 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import { getAuth, signInWithPopup } from "firebase/auth";
-import 'firebase/compat/firestore';
+import { initializeApp } from "firebase/app"
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 const config = {
     apiKey: process.env.FIREBASE_API_KEY,
@@ -13,10 +12,10 @@ const config = {
     appId: process.env.FIREBASE_APP_ID
 };
 
-const firebaseApp = firebase.initializeApp(config);
-const database = firebaseApp.firestore();
+const firebaseApp = initializeApp(config);
+const database = getDatabase(firebaseApp);
 
-const provider = new firebase.auth.GoogleAuthProvider();
+const provider = new GoogleAuthProvider();
 const authGoogle = getAuth();
 
 const startLogin = () => {
@@ -30,4 +29,4 @@ const startLogout = () => {
     authGoogle.signOut();
 }
 
-export { firebase, authGoogle, startLogin, startLogout, database as default };
+export { authGoogle, startLogin, startLogout, database};
