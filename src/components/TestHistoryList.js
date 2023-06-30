@@ -7,16 +7,17 @@ const TestHistoryList = () => {
 
     const {userID, setUserID} = useContext(authContext);
     const [testHistory, setTestHistory] = useState(null);
+    const [loading, setLoading] = useState(true);
+     
+    async function getTestHistory() {
+        await startSetTestHistory(userID, setTestHistory, setLoading);
+    }
 
     useEffect(() => {
-        async function getTestHistory() {
-            const history = await startSetTestHistory(userID);
-            setTestHistory(history);
-        }
-        getTestHistory();
-    }, [])
-
-
+        getTestHistory()
+    }, [loading])
+    
+    
     if(testHistory) {
         return testHistory.map((testHistoryItem, index)=> (
             <TestHistoryItem key={index} testHistoryItem={testHistoryItem}/>

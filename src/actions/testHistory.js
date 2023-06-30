@@ -16,12 +16,12 @@ export const startAddTestHistory = (state, userID, username, createdAt) => {
     push(dbref , testHistoryItem);
 };
 
-export const startSetTestHistory = async (userID) => {
+export const startSetTestHistory = async (userID, setTestHistory, setLoading) => {
 
     const dbref = ref(database, `users/${userID}/testHistory`)
     
     get(dbref).then((snapshot) => {
-        const testHistoryItems = [];
+        let testHistoryItems = [];
 
         snapshot.forEach((childSnapshot) => {
             testHistoryItems.push({
@@ -30,6 +30,7 @@ export const startSetTestHistory = async (userID) => {
             });
         });
 
-        return testHistoryItems;
+        setTestHistory(testHistoryItems);
+        setLoading(false);
     });
 };
