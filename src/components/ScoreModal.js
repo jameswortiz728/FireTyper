@@ -51,7 +51,7 @@ const ScoreModal = ({ accuracy, handleOnReset, scoreModal }) => {
                             type="text"
                             placeholder="AAA"
                             autoFocus
-                            className="text-input text-input--typingtest"
+                            className="text-input text-input--username"
                             value={username}
                             onChange={handleOnChange}
                         />

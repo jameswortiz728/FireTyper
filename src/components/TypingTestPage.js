@@ -103,7 +103,7 @@ const TypingTestPage = () => {
     
     return (
         <typingTestContext.Provider value={{state, dispatch}}>
-                <div id="typingtest" className="spacer">
+                <div id="typingTest" className="spacer">
                     <div className="content-container">
                         <div className="content-container__stats">    
                             <p className="textStats">Time left: {timer} second{timer === 1 ? "" : "s"} {pauseTimer && <span>(PAUSED)</span>}</p>

@@ -15,6 +15,11 @@
     }
 }
 
+.text-input--username {
+    text-align: center;
+    margin-bottom: 10%;
+}
+
 .select {
     @extend .text-input;
 }

@@ -1,0 +1,20 @@
+.list-item {
+    border: 1px solid darken($orange, 7%);
+    color: $off-white;
+    display: flex;
+    flex-direction: column;
+    padding: $s-size;
+    text-decoration: none;
+    transition: background .3s ease;
+    background-color: $off-black;
+    @media (min-width: $desktop-breakpoint) {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: $m-size;
+    }
+}
+
+.list-item:hover .text__coloritemheader {
+    color: $off-white;
+}

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import LandingPage from '../components/LandingPage';
 import MainPage from './../components/MainPage';
+import Header from './../components/Header';
 import NotFoundPage from './../components/NotFoundPage';
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import { authGoogle } from '../firebase/firebase';
 import authContext from './../context/authContext';
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+import AuthRoute from './AuthRoute';
 
 const AuthRouter = () => {
     const [userID, setUserID] = useState(null);
@@ -29,10 +29,11 @@ const AuthRouter = () => {
 
     return (
         <authContext.Provider value={{ userID, setUserID }}>
+            <Header/>
             <Routes>
-                <Route exact path="/" element={<PublicRoute element={<LandingPage/>}/>}/>
-                <Route exact path="/main" element={<PrivateRoute element={<MainPage/>}/>} />
-                <Route path='*' element={<PublicRoute element={<NotFoundPage/>}/>} />
+                <Route exact path="/" element={<AuthRoute element={<LandingPage/>}/>}/>
+                <Route exact path="/main" element={<AuthRoute element={<MainPage/>}/>} />
+                <Route path='*' element={<AuthRoute element={<NotFoundPage/>}/>} />
             </Routes>
          </authContext.Provider>
     )

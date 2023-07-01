@@ -26,4 +26,19 @@
     padding: none;
 }
 
+.button__link {
+    background: none;
+    border: none;
+    color: $orange;
+    display: inline-block;
+    font-size: $font-size-large;
+    font-weight: 300;
+    line-height: 1;
+    padding: $s-size;
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 

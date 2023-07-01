@@ -12,8 +12,8 @@ const TestHistoryItem = ({ testHistoryItem }) => {
                 <span className="list-item__sub-title">{moment(testHistoryItem.createdAt).format('MMMM Do, YYYY')}</span>
             </div>
             <div>
-                <span className="list-item__data">{testHistoryItem.correct} WPM</span>
-                <span className="list-item__data">Accuracy: {accuracy}%</span>
+                <span className="list-item__data">{testHistoryItem.correct} WPM </span>
+                <span className="list-item__data">Accuracy: {accuracy}% </span>
                 <span className="list-item__data">Longest Streak: {testHistoryItem.longestStreak}</span>
             </div>  
         </div>

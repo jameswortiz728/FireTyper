@@ -1,5 +1,4 @@
 import React from 'react';
-import { startLogin } from '../firebase/firebase';
 import handleScrollTo from '../functions/handleScrollTo';
 
 const WelcomePage = () => {
@@ -14,11 +13,10 @@ const WelcomePage = () => {
                     <div className="content-container__login">                 
                         <div className="box-layout__box">
                             <h1 className="box-layout__title">Login</h1>
-                            <p>Login below to proceed.</p> 
-                            <button onClick={startLogin} className="button">Login with Google</button>
+                            <p>Login above to access user features such as test history.</p> 
                         </div>
                         <p>-or-</p>
-                        <button onClick={() => handleScrollTo('typingtest')} className="button button--welcome">Use without logging in</button>
+                        <button onClick={() => handleScrollTo('typingTest')} className="button button--welcome">Use without logging in</button>
                     </div>
                 </div>
             </div>

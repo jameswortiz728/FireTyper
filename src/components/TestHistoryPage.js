@@ -9,7 +9,7 @@ const TestHistoryPage = () => {
 
     return (
 
-            <div id="leaderboards" className="spacer">
+            <div id="testHistory" className="spacer">
                 <div className="content-container">
                     <div className="section">
                         <div>
