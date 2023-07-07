@@ -19,7 +19,9 @@ const TestHistoryList = () => {
     
     
     if(testHistory) {
-        return testHistory.map((testHistoryItem, index)=> (
+        let testHistoryMap = testHistory.slice(0,5);
+
+        return testHistoryMap.map((testHistoryItem, index)=> (
             <TestHistoryItem key={index} testHistoryItem={testHistoryItem}/>
         ))
     }

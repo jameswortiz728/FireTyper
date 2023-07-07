@@ -30,6 +30,8 @@ export const startSetTestHistory = async (userID, setTestHistory, setLoading) =>
             });
         });
 
+        testHistoryItems.sort(({createdAt: a}, {createdAt: b}) => b - a);
+
         setTestHistory(testHistoryItems);
         setLoading(false);
     });
