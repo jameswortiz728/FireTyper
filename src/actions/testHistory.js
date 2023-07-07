@@ -16,7 +16,7 @@ export const startAddTestHistory = (state, userID, username, createdAt) => {
     push(dbref , testHistoryItem);
 };
 
-export const startSetTestHistory = async (userID, setTestHistory, setLoading) => {
+export const startSetTestHistory = async (userID, setTestHistory, setLoading, loading) => {
 
     const dbref = ref(database, `users/${userID}/testHistory`)
     
@@ -32,7 +32,7 @@ export const startSetTestHistory = async (userID, setTestHistory, setLoading) =>
 
         testHistoryItems.sort(({createdAt: a}, {createdAt: b}) => b - a);
 
-        setTestHistory(testHistoryItems);
-        setLoading(false);
+        setTestHistory(() => testHistoryItems.length >= 1 ? testHistoryItems : null);
+        setLoading(!loading);
     });
 };

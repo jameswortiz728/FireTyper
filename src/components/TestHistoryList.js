@@ -10,23 +10,22 @@ const TestHistoryList = () => {
     const [loading, setLoading] = useState(true);
      
     async function getTestHistory() {
-        await startSetTestHistory(userID, setTestHistory, setLoading);
+        await startSetTestHistory(userID, setTestHistory, setLoading, loading);
     }
 
     useEffect(() => {
         getTestHistory()
     }, [loading])
     
-    
     if(testHistory) {
-        let testHistoryMap = testHistory.slice(0,5);
+        let testHistoryMap = testHistory.slice(0, 5);
 
         return testHistoryMap.map((testHistoryItem, index)=> (
             <TestHistoryItem key={index} testHistoryItem={testHistoryItem}/>
         ))
     }
     
-    return <p>No data to show.</p>
+    return <p>No previous attempts.</p>
 };
 
 export { TestHistoryList as default };
