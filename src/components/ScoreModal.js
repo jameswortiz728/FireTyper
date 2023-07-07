@@ -15,7 +15,7 @@ const ScoreModal = ({ accuracy, handleOnReset, scoreModal }) => {
     const now = moment().valueOf();
 
     const handleOnSubmit = () => {
-        if (isAuthenticated && username.match(/^[a-z\d]{3}$/i)){
+        if (isAuthenticated && username.match(/^[a-z\d]{1,3}$/i)){
             startAddTestHistory(state, userID, username, now);
             handleOnReset();
         } else if (!isAuthenticated) {
@@ -46,7 +46,7 @@ const ScoreModal = ({ accuracy, handleOnReset, scoreModal }) => {
                 { 
                     isAuthenticated &&
                     <div>
-                        <p>Enter a 3-letter Username:</p>
+                        <p>Enter up to 3-letter Username:</p>
                         <input
                             type="text"
                             placeholder="AAA"
